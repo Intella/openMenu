@@ -17,7 +17,7 @@
 
 #define LCD_COLS     40
 #define LCD_LINES    4
-
+#define CURSOR       "-> "
 // LCD function:  RS,RW,EN1,EN2,D4,D5,D6,D7
 // PC4004-A pins: 11,10,  9, 15, 4, 3, 2, 1
 LiquidCrystal lcd (12,11,10, 9, 5, 4, 3, 2);
@@ -51,15 +51,15 @@ OpenRotary rotary = OpenRotary (ROTARY_STATE_PIN, ROTARY_DIRECTION_PIN, ROTARY_B
 
 void callbackRotaryButtonPressed (void) {  // handler which will be called if the rotary button is pressed
   ms.call ( );
-  ms.printMenuSystem ( );
+  printMenu ( );
 }
 void callbackRotaryTurnRight (void) {      // handler which will be called if the rotary encoder is turned right
   ms.next ( );
-  ms.printMenuSystem ( );
+  printMenu ( );
 }
 void callbackRotaryTurnLeft (void)  {      // handler which will be called if the rotary encoder is turned right
   ms.prev ( );
-  ms.printMenuSystem ( );
+  printMenu ( );
 }
 /***************************************************************************************************************************************/
 
@@ -78,8 +78,6 @@ void setup ( ) {
   ms.addMenu(&m5);  
  
   lcd.begin     (LCD_COLS, LCD_LINES);
-  printMenu ( );
-  
   
 }
 void loop() {
@@ -89,10 +87,12 @@ void loop() {
 }
 
 void printMenu (void) {
+  lcd.clear ( );
   for (int i = 0; i < LCD_LINES;i++) {
     lcd.setCursor (0,i);
+    if (ms.menuIsSelected (i)) lcd.print (CURSOR);
     lcd.print (ms.getMenuName (i));
-    //lcd.print (ms.
+    
   }
-  
+  // ms.printMenuSystem ( );
 }
