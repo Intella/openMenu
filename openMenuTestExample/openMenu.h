@@ -39,6 +39,7 @@ public:
     void     next              (void);                                    // choose next menu
     void     prev              (void);                                    // choose previous menu  
     void     call              (void);                                    // invoke menu callback
+    String   getMenuName       (uint8_t index);                           // return menu name by index
     
 private:  
     String   menuSystemName;                                              // name of menu system
