@@ -76,7 +76,7 @@ void setup ( ) {
                                    
   ms.addMenu(&m1, &m1_callback);
   ms.addMenu(&m2, NULL);
-  //ms.addMenu(&m3);
+  ms.addMenu(&m3, NULL);
   
  /*
   lcd.begin (LCD_COLS, LCD_LINES);

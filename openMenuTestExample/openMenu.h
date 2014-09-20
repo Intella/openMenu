@@ -16,9 +16,12 @@ class Menu {
               Menu           (String _name);
     String    getName        (void);
     void      addCallback    (void (*_menuCallback)(void));
+    void      select         (void);
+    void      unselect       (void);
   private:
     String    menuName;
-    void (*menuCallback)    (void);
+    void      (*menuCallback)    (void);
+    bool      selected;
 };
 
 class MenuSystem   {
@@ -31,6 +34,7 @@ public:
     
 private:
     String   menuSystemName;
+    int      selectCounter;
     Menu  * *listMenu ;       // stores pointer to menu objects 
     uint8_t  menuQuantity;
     

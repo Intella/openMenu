@@ -4,7 +4,7 @@ MenuSystem::MenuSystem       (String _name)
 {
    menuSystemName = _name;
    menuQuantity   = 0;
-   //listMenu = (Menu **) malloc(sizeof(Menu));
+   selectCounter  = 0;
 
 }
 int MenuSystem::addMenu          (Menu *m, void (*_menuCallback)(void)) {
@@ -27,8 +27,9 @@ void MenuSystem::printMenuSystem (void){
   Serial.print ("--> "); Serial.println(menuSystemName);
   
   for (int i = 0; i != menuQuantity; i++) {
-    Serial.print("----> "); 
-    Serial.println(listMenu[i]->getName ( ));
+    Serial.print("----> "); Serial.print (listMenu[i]->getName ( ));
+    Serial.print ("  Callback: ");
+    
   }
 
 
