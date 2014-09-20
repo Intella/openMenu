@@ -48,22 +48,17 @@ Menu       m3 ("sub-menu 3");
 
 OpenRotary rotary = OpenRotary (ROTARY_STATE_PIN, ROTARY_DIRECTION_PIN, ROTARY_BUTTON_PIN, 0);    // make the rotary encoder object 
 
-void callbackRotaryButtonPressed (void)            // handler which will be called if the rotary button is pressed
-{
-  
- ms.printMenuSystem ( );
+void callbackRotaryButtonPressed (void) {  // handler which will be called if the rotary button is pressed
+  ms.call ( );
+  ms.printMenuSystem ( );
 }
-void callbackRotaryTurnRight (void)                // handler which will be called if the rotary encoder is turned right
-{
-  Serial.print("callbackRotaryTurnRight");
-  Serial.print("  rotaryCount: ");
-  Serial.println(rotary.getRotaryCount ( ));
+void callbackRotaryTurnRight (void) {      // handler which will be called if the rotary encoder is turned right
+  ms.next ( );
+  ms.printMenuSystem ( );
 }
-void callbackRotaryTurnLeft (void)                 // handler which will be called if the rotary encoder is turned right
-{
-  Serial.print("callbackRotaryTurnLeft");
-  Serial.print("   rotaryCount: ");
-  Serial.println(rotary.getRotaryCount ( ));
+void callbackRotaryTurnLeft (void)  {      // handler which will be called if the rotary encoder is turned right
+  ms.prev ( );
+  ms.printMenuSystem ( );
 }
 /***************************************************************************************************************************************/
 
@@ -75,8 +70,8 @@ void setup ( ) {
                                    &callbackRotaryTurnLeft);
                                    
   ms.addMenu(&m1, &m1_callback);
-  ms.addMenu(&m2, NULL);
-  ms.addMenu(&m3, NULL);
+  ms.addMenu(&m2);
+  ms.addMenu(&m3);
   
  /*
   lcd.begin (LCD_COLS, LCD_LINES);

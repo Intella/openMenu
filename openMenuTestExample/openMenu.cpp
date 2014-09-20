@@ -2,8 +2,9 @@
 
 Menu::Menu (String _name)
 {
- menuName  = _name; 
- selected  = false;
+ menuName          = _name; 
+ selected          = false;
+ callbackSupported = false;    // No Callback at Beginning
 }
 String Menu::getName         (void) 
 {
@@ -19,4 +20,10 @@ void Menu::select         (void) {
 }
 void Menu::unselect       (void) {
   selected = false;
+}
+bool Menu::isSelected     (void) {
+  return selected;
+}
+void Menu::invokeCallback (void) {
+  menuCallback ( );
 }
