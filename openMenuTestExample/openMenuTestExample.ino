@@ -78,8 +78,7 @@ void setup ( ) {
   ms.addMenu(&m5);  
  
   lcd.begin     (LCD_COLS, LCD_LINES);
-  lcd.setCursor (0,0);
-  lcd.print     ("TEST");
+  printMenu ( );
   
   
 }
@@ -91,7 +90,8 @@ void loop() {
 
 void printMenu (void) {
   for (int i = 0; i < LCD_LINES;i++) {
-    lcd.setCursor (i,0);
+    lcd.setCursor (0,i);
+    lcd.print (ms.getMenuName (i));
     //lcd.print (ms.
   }
   

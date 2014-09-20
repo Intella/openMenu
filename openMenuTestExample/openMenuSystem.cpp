@@ -74,6 +74,12 @@ void MenuSystem::call       (void) {
     listMenu [selectCounter]->invokeCallback ( );  // call Callback 
 }  
 String MenuSystem::getMenuName       (uint8_t index) {
-  if (index > 0 && index < menuQuantity)
+  if (index >= 0 && index < menuQuantity)
     return listMenu[index]->getName ( );
+  else return "error";
 } 
+bool MenuSystem::menuIsSelected    (uint8_t index) {
+  if (index >= 0 && index < menuQuantity)
+    return listMenu[index]->isSelected ( );
+  else return false;
+}

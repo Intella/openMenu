@@ -40,6 +40,7 @@ public:
     void     prev              (void);                                    // choose previous menu  
     void     call              (void);                                    // invoke menu callback
     String   getMenuName       (uint8_t index);                           // return menu name by index
+    bool     menuIsSelected    (uint8_t index);                           // true if menu by index is selected, else false                                    
     
 private:  
     String   menuSystemName;                                              // name of menu system
