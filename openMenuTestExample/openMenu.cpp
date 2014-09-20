@@ -14,6 +14,7 @@ String Menu::getName         (void)
 void Menu::addCallback       (void (*_menuCallback)(void))
 {
   menuCallback = _menuCallback;
+  callbackSupported = true;
 }
 void Menu::select         (void) {
   selected = true;
@@ -25,5 +26,6 @@ bool Menu::isSelected     (void) {
   return selected;
 }
 void Menu::invokeCallback (void) {
-  menuCallback ( );
+  if (callbackSupported)
+    menuCallback ( );
 }
