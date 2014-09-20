@@ -27,9 +27,9 @@ LiquidCrystal lcd (12,11, 10,  9, 5, 4, 3, 2);
 /** menu *******************************************************************************************************************************/
 /***************************************************************************************************************************************/
 MenuSystem ms ("main-menu");
-Menu       m1 ("test-menu1");
-Menu       m2 ("test-menu2");
-Menu       m3 ("test-menu3");
+Menu       m1 ("sub-menu 1");
+Menu       m2 ("sub-menu 2");
+Menu       m3 ("sub-menu 3");
 
 
 /***************************************************************************************************************************************/
@@ -71,9 +71,10 @@ void setup ( ) {
   rotary.setRotaryRotationCallback(&callbackRotaryTurnRight,           // set callback for rotation
                                    &callbackRotaryTurnLeft);
                                    
-  ms.addMenu(m1);
-  ms.addMenu(m2);
-  ms.addMenu(m3);
+  ms.addMenu(&m1);
+  ms.addMenu(&m2);
+  ms.addMenu(&m3);
+  
  /*
   lcd.begin (LCD_COLS, LCD_LINES);
   lcd.setCursor (0,0);
