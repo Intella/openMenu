@@ -20,7 +20,7 @@
 
 // LCD function:  RS,RW,EN1,EN2,D4,D5,D6,D7
 // PC4004-A pins: 11,10,  9, 15, 4, 3, 2, 1
-LiquidCrystal lcd (12,11, 10,  9, 5, 4, 3, 2);
+LiquidCrystal lcd (12,11,10, 9, 5, 4, 3, 2);
 /***************************************************************************************************************************************/
 
 /***************************************************************************************************************************************/
@@ -65,7 +65,7 @@ void callbackRotaryTurnLeft (void)  {      // handler which will be called if th
 
 void setup ( ) {
   Serial.begin (115200);
-  while (!Serial.available  ( ));
+   
   rotary.setRotaryCountBoundaries (-10,10);                            // set rotary counter boundaries 
   rotary.setRotaryButtonCallback  (&callbackRotaryButtonPressed);      // set callback for button press
   rotary.setRotaryRotationCallback(&callbackRotaryTurnRight,           // set callback for rotation
@@ -76,15 +76,23 @@ void setup ( ) {
   ms.addMenu(&m3);
   ms.addMenu(&m4);
   ms.addMenu(&m5);  
- /*
-  lcd.begin (LCD_COLS, LCD_LINES);
+ 
+  lcd.begin     (LCD_COLS, LCD_LINES);
   lcd.setCursor (0,0);
-  lcd.print ("TEST");
-  */
+  lcd.print     ("TEST");
+  
   
 }
 void loop() {
   rotary.check ( );    // in loop just check the rotary (maybe i will change it in futre to support intterupts but not needed in the moment)
 
+  
+}
+
+void printMenu (void) {
+  for (int i = 0; i < LCD_LINES;i++) {
+    lcd.setCursor (i,0);
+    //lcd.print (ms.
+  }
   
 }

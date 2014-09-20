@@ -39,7 +39,7 @@ void MenuSystem::printMenuSystem (void) {
   Serial.print   ("selectCounter:   "); Serial.println(selectCounter);
   Serial.println ("");
   
-  Serial.print ("--> "); Serial.println(menuSystemName);
+  Serial.print ("--> "); Serial.println(menuSystemName);    
   
   for (int i = 0; i != menuQuantity; i++) {
     
@@ -48,8 +48,8 @@ void MenuSystem::printMenuSystem (void) {
     else                              Serial.print ("    ");
     Serial.print (listMenu[i]->getName ( ));
     Serial.print ("  callback: ");
-    if (listMenu [i]->callbackIsSupported ( )); Serial.print ("YES");
-    else                                        Serial.print ("NO");
+    if (listMenu [i]->callbackIsSupported ( )) Serial.print ("YES");
+    else                                       Serial.print ("NO");
     Serial.println ("");
   }
   Serial.println("**********************************");

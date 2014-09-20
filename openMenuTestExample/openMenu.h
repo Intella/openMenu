@@ -8,6 +8,7 @@
  #include "WProgram.h"
 #endif
 
+#include <LiquidCrystal.h>
  
 class Menu {
   
@@ -46,6 +47,7 @@ private:
     uint8_t  menuQuantity;                                                // quantity of menus
     
 };
+
 
 
 
