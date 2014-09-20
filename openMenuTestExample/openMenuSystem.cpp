@@ -7,13 +7,13 @@ MenuSystem::MenuSystem       (String _name)
    //listMenu = (Menu **) malloc(sizeof(Menu));
 
 }
-int MenuSystem::addMenu          (Menu *m){
+int MenuSystem::addMenu          (Menu *m, void (*_menuCallback)(void)) {
   
   listMenu = (Menu**) realloc (listMenu, 
                               (menuQuantity+1) * sizeof(Menu*)); // reallocate listMenu array,
   if (listMenu!=NULL) {
-    listMenu [menuQuantity]   = m;
-    menuQuantity++;
+    listMenu [menuQuantity++]   = m;
+    m->addCallback (_menuCallback);
     return menuQuantity;
    }
    else {

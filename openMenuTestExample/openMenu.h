@@ -8,20 +8,24 @@
  #include "WProgram.h"
 #endif
 
+ 
 class Menu {
   
   public:
+              Menu           (void);
               Menu           (String _name);
     String    getName        (void);
+    void      addCallback    (void (*_menuCallback)(void));
   private:
     String    menuName;
+    void (*menuCallback)    (void);
 };
 
-class MenuSystem    {
+class MenuSystem   {
     
 public:
              MenuSystem      (String _name);
-    int      addMenu         (Menu *m);
+    int      addMenu         (Menu *m, void (*_menuCallback)(void));
     void     printMenuSystem (void);
     String   getName         (void);
     
