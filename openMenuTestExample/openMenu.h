@@ -19,9 +19,10 @@ class Menu {
     void      unselect         (void);                                    // unselect menu
     bool      isSelected       (void);                                    // returns true if menu is selected, false else
     void      invokeCallback   (void);                                    // invoke menu callback function
+    bool      callbackIsSupported   (void);                               // returns true it menu supports callback function, false else
   private:
     String    menuName;
-    void      (*menuCallback)  (void);                                    // menu callback must look like "void callMe (void)"
+    void      (*menuCallback) (void);                                     // menu callback must look like "void callMe (void)"
     bool      selected;                                                   // true if selected, false else
     bool      callbackSupported;                                          // true if menu supports callback function, false else
 };

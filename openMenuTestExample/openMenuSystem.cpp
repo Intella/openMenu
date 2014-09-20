@@ -46,7 +46,11 @@ void MenuSystem::printMenuSystem (void) {
     Serial.print("----> "); 
     if (listMenu [i]->isSelected ( )) Serial.print ("(s) ");
     else                              Serial.print ("    ");
-    Serial.println (listMenu[i]->getName ( ));
+    Serial.print (listMenu[i]->getName ( ));
+    Serial.print ("  callback: ");
+    if (listMenu [i]->callbackIsSupported ( )); Serial.print ("YES");
+    else                                        Serial.print ("NO");
+    Serial.println ("");
   }
   Serial.println("**********************************");
 }

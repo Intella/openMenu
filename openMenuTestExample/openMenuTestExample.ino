@@ -33,7 +33,8 @@ void m1_callback (void) {
 }
 Menu       m2 ("sub-menu 2");
 Menu       m3 ("sub-menu 3");
-
+Menu       m4 ("sub-menu 4");
+Menu       m5 ("sub-menu 5");
 
 /***************************************************************************************************************************************/
 
@@ -73,7 +74,8 @@ void setup ( ) {
   ms.addMenu(&m1, &m1_callback);
   ms.addMenu(&m2);
   ms.addMenu(&m3);
-  
+  ms.addMenu(&m4);
+  ms.addMenu(&m5);  
  /*
   lcd.begin (LCD_COLS, LCD_LINES);
   lcd.setCursor (0,0);
