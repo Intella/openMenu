@@ -4,7 +4,6 @@ MenuSystem::MenuSystem       (String _name) {
    menuSystemName = _name;
    menuQuantity   = 0;
    selectCounter  = 0;
-   printMenuSystem ( );
 }
 
 int MenuSystem::addMenu          (Menu *m, void (*_menuCallback)(void)) {
@@ -35,33 +34,35 @@ int MenuSystem::addMenu          (Menu *m) {
    }
 }
 void MenuSystem::printMenuSystem (void) {
-  Serial.println ("menuQuantity:    "); Serial.println(menuQuantity);
+  Serial.println("**********************************");
+  Serial.print ("menuQuantity:    "); Serial.println(menuQuantity);
   Serial.print   ("selectCounter:   "); Serial.println(selectCounter);
   Serial.println ("");
   
   Serial.print ("--> "); Serial.println(menuSystemName);
   
   for (int i = 0; i != menuQuantity; i++) {
-    Serial.print("----> "); Serial.print (listMenu[i]->getName ( ));
     
-    if (listMenu [i]->isSelected ( )) Serial.print ("     (selected)");
-      
-    Serial.println("");
+    Serial.print("----> "); 
+    if (listMenu [i]->isSelected ( )) Serial.print ("(s) ");
+    else                              Serial.print ("    ");
+    Serial.println (listMenu[i]->getName ( ));
   }
+  Serial.println("**********************************");
 }
 String MenuSystem::getName (void) {
   return menuSystemName;
 }
 void MenuSystem::next       (void) {
   if (selectCounter < menuQuantity-1) {
-    listMenu [selectCounter]->unselect ( );  // unselect previous
+    listMenu [selectCounter]->unselect ( );    // unselect previous
     listMenu [++selectCounter]->select ( );    // select next 
   }
   
 }
 void MenuSystem::prev       (void) {
   if (selectCounter > 0) {
-    listMenu [selectCounter]->unselect ( );  // unselect previous 
+    listMenu [selectCounter]->unselect ( );    // unselect previous 
     listMenu [--selectCounter]->select ( );    // select next 
   }
 }  

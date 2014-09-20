@@ -64,11 +64,12 @@ void callbackRotaryTurnLeft (void)  {      // handler which will be called if th
 
 void setup ( ) {
   Serial.begin (115200);
+  while (!Serial.available  ( ));
   rotary.setRotaryCountBoundaries (-10,10);                            // set rotary counter boundaries 
   rotary.setRotaryButtonCallback  (&callbackRotaryButtonPressed);      // set callback for button press
   rotary.setRotaryRotationCallback(&callbackRotaryTurnRight,           // set callback for rotation
                                    &callbackRotaryTurnLeft);
-                                   
+  m1.select ( );    // select first one                                 
   ms.addMenu(&m1, &m1_callback);
   ms.addMenu(&m2);
   ms.addMenu(&m3);
