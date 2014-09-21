@@ -27,10 +27,11 @@ MenuSystem::MenuSystem       (String _name) {
    menuSystemName = _name;
    menuQuantity   = 0;
    selectCounter  = 0;
+   scrollActive   = false;
+   scrollCounter  = 0;
 }
 
 int MenuSystem::addMenu          (Menu *m, void (*_menuCallback)(void)) {
-  
   listMenu = (Menu**) realloc (listMenu, 
                               (menuQuantity+1) * sizeof(Menu*)); // reallocate listMenu array,
   if (listMenu!=NULL) {
@@ -60,6 +61,10 @@ void MenuSystem::printMenuSystem (void) {
   Serial.println("**********************************");
   Serial.print ("menuQuantity:    "); Serial.println(menuQuantity);
   Serial.print   ("selectCounter:   "); Serial.println(selectCounter);
+  Serial.print   ("scrollCounter:   "); Serial.print(scrollCounter);
+  Serial.print   ("   scrollActive:   ");
+  if (scrollActive) Serial.println("active");
+  else              Serial.println("idle");
   Serial.println ("");
   
   Serial.print ("--> "); Serial.println(menuSystemName);    
@@ -83,7 +88,8 @@ String MenuSystem::getName (void) {
 void MenuSystem::next       (void) {
   if (selectCounter < menuQuantity-1) {
     listMenu [selectCounter]->unselect ( );    // unselect previous
-    listMenu [++selectCounter]->select ( );    // select next 
+    listMenu [++selectCounter]->select ( );    // select next
+    if (scrollActive) scrollCounter++; 
   }
   
 }
@@ -91,6 +97,7 @@ void MenuSystem::prev       (void) {
   if (selectCounter > 0) {
     listMenu [selectCounter]->unselect ( );    // unselect previous 
     listMenu [--selectCounter]->select ( );    // select next 
+    if (scrollActive && scrollCounter !=0 ) scrollCounter--;
   }
 }  
 void MenuSystem::call       (void) {
@@ -108,7 +115,16 @@ bool MenuSystem::menuIsSelected    (uint8_t index) {
 }
 uint8_t MenuSystem::scroll (uint8_t l) {
   uint8_t calculated = 0;  //selectCounter, l,i,menuQuantity
-  calculated = 0;
+  if      (selectCounter < l-2) {  // no scrolling needed
+    calculated = 0;
+    scrollActive = false;
+  }
+  else {
+    scrollActive = true;
+    calculated = scrollCounter;
+  }
+  
+  
   return calculated;
 }
 uint8_t MenuSystem::getSelectCounter  (void) {

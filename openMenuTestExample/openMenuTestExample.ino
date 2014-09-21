@@ -57,7 +57,8 @@ Menu       m2 ("sub-menu 2");
 Menu       m3 ("sub-menu 3");
 Menu       m4 ("sub-menu 4");
 Menu       m5 ("sub-menu 5");
-
+Menu       m6 ("sub-menu 6");
+Menu       m7 ("sub-menu 7");
 /***************************************************************************************************************************************/
 
 /***************************************************************************************************************************************/
@@ -92,12 +93,15 @@ void setup ( ) {
   rotary.setRotaryButtonCallback  (&callbackRotaryButtonPressed);      // set callback for button press
   rotary.setRotaryRotationCallback(&callbackRotaryTurnRight,           // set callback for rotation
                                    &callbackRotaryTurnLeft);
+  
   m1.select   ( );    // select first one                                 
   ms.addMenu  (&m1, &m1_callback);
   ms.addMenu  (&m2);
   ms.addMenu  (&m3);
   ms.addMenu  (&m4);
   ms.addMenu  (&m5);  
+  ms.addMenu  (&m6);
+  ms.addMenu  (&m7); 
  
   lcd.begin     (LCD_COLS, LCD_LINES);
   
@@ -108,27 +112,32 @@ void loop() {
   
 }
 
-uint8_t middle (String str) {                // calculate middle
+uint8_t middle (String str) {                  // calculate best string beginning to set it to the lcd middle
   return ( (LCD_COLS/2) - (str.length()/2) );
 }
 
 
 void printMenu (void) {
   lcd.clear ( );
+  
   // print main menu line
   lcd.setCursor (middle(ms.getName ()),0); 
-  lcd.print (ms.getName ());
- 
+  lcd.print     (ms.getName ());
   lcd.setCursor (37,0); 
-  lcd.print (ms.getSelectCounter()+1); lcd.print ("/");lcd.print (ms.getMenuQuantity ( )); 
+  lcd.print     (ms.getSelectCounter()+1); 
+  lcd.print     ("/");
+  lcd.print     (ms.getMenuQuantity ( )); 
   
   
-  int scroll = ms.scroll (LCD_LINES);
+  int scroll = ms.scroll (LCD_LINES)-1;
+  
   for (int i = 1; i < LCD_LINES;i++) {
+    
     lcd.setCursor (0,i);  // line
-    if (ms.menuIsSelected (scroll)) lcd.print (CURSOR);
-    lcd.print (ms.getMenuName (scroll));
-    scroll++;
+    if (ms.menuIsSelected (i+scroll)) lcd.print (CURSOR);
+    lcd.print (ms.getMenuName (i+scroll));
+    //scroll++;
+    
   }
    ms.printMenuSystem ( );
 }

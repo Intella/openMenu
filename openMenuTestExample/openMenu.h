@@ -74,7 +74,8 @@ private:
     int      selectCounter;                                               // selection counter
     Menu   **listMenu ;                                                   // stores pointer to menu objects 
     uint8_t  menuQuantity;                                                // quantity of menus
-    
+    uint8_t  scrollCounter;                                               // helping counter for scrolling calculation
+    bool     scrollActive;                                                // true if scrolling is active, false else
 };
 
 
