@@ -64,7 +64,10 @@ public:
     void     call              (void);                                    // invoke menu callback
     String   getMenuName       (uint8_t index);                           // return menu name by index
     bool     menuIsSelected    (uint8_t index);                           // true if menu by index is selected, else false  
-    uint8_t  scroll            (uint8_t l);                                   
+    uint8_t  getSelectCounter  (void);                                    // retruns selection counter
+    uint8_t  getMenuQuantity   (void);                                    // returns menu quantity added to menu system
+    uint8_t  scroll            (uint8_t l);                          
+    
     
 private:  
     String   menuSystemName;                                              // name of menu system

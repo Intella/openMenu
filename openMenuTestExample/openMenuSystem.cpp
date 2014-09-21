@@ -111,7 +111,11 @@ uint8_t MenuSystem::scroll (uint8_t l) {
   calculated = 0;
   return calculated;
 }
-
-
+uint8_t MenuSystem::getSelectCounter  (void) {
+  return selectCounter;
+}
+uint8_t MenuSystem::getMenuQuantity   (void) {
+  return menuQuantity;
+}
 
 

@@ -108,10 +108,23 @@ void loop() {
   
 }
 
+uint8_t middle (String str) {                // calculate middle
+  return ( (LCD_COLS/2) - (str.length()/2) );
+}
+
+
 void printMenu (void) {
   lcd.clear ( );
+  // print main menu line
+  lcd.setCursor (middle(ms.getName ()),0); 
+  lcd.print (ms.getName ());
+ 
+  lcd.setCursor (37,0); 
+  lcd.print (ms.getSelectCounter()+1); lcd.print ("/");lcd.print (ms.getMenuQuantity ( )); 
+  
+  
   int scroll = ms.scroll (LCD_LINES);
-  for (int i = 0; i < LCD_LINES;i++) {
+  for (int i = 1; i < LCD_LINES;i++) {
     lcd.setCursor (0,i);  // line
     if (ms.menuIsSelected (scroll)) lcd.print (CURSOR);
     lcd.print (ms.getMenuName (scroll));
