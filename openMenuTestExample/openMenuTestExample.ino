@@ -1,3 +1,25 @@
+/* The MIT License (MIT)
+ *
+ * Copyright (c) 2014 to nils minor (contact nilsminor@web.de)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 #include <openRotary.h>
 #include <LiquidCrystal.h>
 #include "openMenu.h"
@@ -70,29 +92,30 @@ void setup ( ) {
   rotary.setRotaryButtonCallback  (&callbackRotaryButtonPressed);      // set callback for button press
   rotary.setRotaryRotationCallback(&callbackRotaryTurnRight,           // set callback for rotation
                                    &callbackRotaryTurnLeft);
-  m1.select ( );    // select first one                                 
-  ms.addMenu(&m1, &m1_callback);
-  ms.addMenu(&m2);
-  ms.addMenu(&m3);
-  ms.addMenu(&m4);
-  ms.addMenu(&m5);  
+  m1.select   ( );    // select first one                                 
+  ms.addMenu  (&m1, &m1_callback);
+  ms.addMenu  (&m2);
+  ms.addMenu  (&m3);
+  ms.addMenu  (&m4);
+  ms.addMenu  (&m5);  
  
   lcd.begin     (LCD_COLS, LCD_LINES);
   
 }
 void loop() {
-  rotary.check ( );    // in loop just check the rotary (maybe i will change it in futre to support intterupts but not needed in the moment)
+  rotary.check ( );    // in loop just check the rotary  
 
   
 }
 
 void printMenu (void) {
   lcd.clear ( );
+  int scroll = ms.scroll (LCD_LINES);
   for (int i = 0; i < LCD_LINES;i++) {
-    lcd.setCursor (0,i);
-    if (ms.menuIsSelected (i)) lcd.print (CURSOR);
-    lcd.print (ms.getMenuName (i));
-    
+    lcd.setCursor (0,i);  // line
+    if (ms.menuIsSelected (scroll)) lcd.print (CURSOR);
+    lcd.print (ms.getMenuName (scroll));
+    scroll++;
   }
-  // ms.printMenuSystem ( );
+   ms.printMenuSystem ( );
 }
